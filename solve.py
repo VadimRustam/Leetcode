@@ -61,7 +61,7 @@ class Solution:
 
     def backtrack(self, opened, closed):
         if opened == closed == self.n:
-            self.res.append(self.stack)
+            self.res.append("".join(self.stack))
             return
 
         if opened < self.n:
