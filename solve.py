@@ -44,7 +44,6 @@
 #         backtrack()
 #         return result
 
-# # Example usage
 # solution = Solution()
 # n = 100
 # print(solution.generateParenthesis(n))
@@ -83,15 +82,14 @@
 
 # реилзиция через dfs
 
- class Solution(object):
+class Solution(object):
     def subsetXORSum(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-
         def dfs(i, total):
             if i == len(nums):
                 return total
             return dfs(i + 1, total ^ nums[i]) + dfs(i + 1, total)
         return dfs(0, 0)
+
+sol = Solution()
+nums = [1, 5, 6]
+print(sol.subsetXORSum(nums))
