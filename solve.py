@@ -19,7 +19,7 @@
 #     Pascal.append(row)
 # print(Pascal)
 
-
+# Решение 22 задачи через поиск в глубину DFS
 # class Solution(object):
 #     def generateParenthesis(self, n):
 #         """
@@ -49,31 +49,49 @@
 # n = 100
 # print(solution.generateParenthesis(n))
 
+# решение с помощью stack
+# class Solution:
+#     def generateParenthesis(self, n):
+#         self.n = n
+#         self.stack = []
+#         self.res = []
 
-class Solution:
-    def generateParenthesis(self, n):
-        self.n = n
-        self.stack = []
-        self.res = []
+#         self.backtrack(0, 0)
+#         return self.res
 
-        self.backtrack(0, 0)
-        return self.res
+#     def backtrack(self, opened, closed):
+#         if opened == closed == self.n:
+#             self.res.append("".join(self.stack))
+#             return
 
-    def backtrack(self, opened, closed):
-        if opened == closed == self.n:
-            self.res.append("".join(self.stack))
-            return
+#         if opened < self.n:
+#             self.stack.append("(")
+#             self.backtrack(opened + 1, closed)
+#             self.stack.pop()
 
-        if opened < self.n:
-            self.stack.append("(")
-            self.backtrack(opened + 1, closed)
-            self.stack.pop()
-
-        if closed < opened:
-            self.stack.append(")")
-            self.backtrack(opened, closed + 1)
-            self.stack.pop()
+#         if closed < opened:
+#             self.stack.append(")")
+#             self.backtrack(opened, closed + 1)
+#             self.stack.pop()
 
 
-sol = Solution()
-print(sol.generateParenthesis(2))
+# sol = Solution()
+# print(sol.generateParenthesis(2))
+
+# решение 1863 суть задачи в определении XOR всех чисел. Надо 1 6
+# определить ХОР 1, 6, 1 6.
+
+# реилзиция через dfs
+
+ class Solution(object):
+    def subsetXORSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+
+        def dfs(i, total):
+            if i == len(nums):
+                return total
+            return dfs(i + 1, total ^ nums[i]) + dfs(i + 1, total)
+        return dfs(0, 0)
